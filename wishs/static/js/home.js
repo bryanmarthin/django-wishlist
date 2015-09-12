@@ -1,14 +1,15 @@
-function addWish(user, timestamp, text) {
+function addWish(id, user, timestamp, text) {
     var pText = text.replace(/\r\n/g, "<br>").replace(/\n/g, "<br>");
 
     var t = document.querySelector('#wish-template');
-    t.content.querySelector('#user').innerHTML = user;
-    t.content.querySelector('#timestamp').innerHTML = timestamp;
-    t.content.querySelector('#text').innerHTML = pText;
+    t.content.querySelector('.username-div > p').innerHTML = user;
+    t.content.querySelector('.timestamp-div > p').innerHTML = timestamp;
+    t.content.querySelector('.wish-text-div > p').innerHTML = pText;
 
     var clone = document.importNode(t.content, true);
-    var feedbox = document.querySelector("#feedbox");
+    clone.querySelector('.wish-div').setAttribute("data-wish-id", id);
 
+    var feedbox = document.querySelector("#feedbox");
     feedbox.insertBefore(clone, feedbox.firstChild);
 }
 
@@ -19,10 +20,11 @@ function addWish(user, timestamp, text) {
         .done(function(data){
         for(var i=0; i<data.length; i++){
             wish = data[i]
+            var id = wish['id'];
             var createdAt = wish['created_at'];
             var text = wish['text'];
             var user = wish['user'];
-            addWish(user, createdAt, text);
+            addWish(id, user, createdAt, text);
         }
     })
 })();
@@ -46,10 +48,11 @@ function addWish(user, timestamp, text) {
                 })
 
                 request.done(function(wish){
+                    var wishId = wish['id'];
                     var createdAt = wish['created_at'];
                     var text = wish['text'];
                     var user = wish['user'];
-                    addWish(user, createdAt, text);
+                    addWish(wishId, user, createdAt, text);
                 })
 
                 request.fail(function(){
@@ -63,6 +66,32 @@ function addWish(user, timestamp, text) {
             } else {
                 alert('Please enter your wish.')
             }
+        })
+    })
+})();
+
+
+(function(){
+    // when close button is clicked, delete wish.
+    $(document).ready(function(){
+        $('#delete-wish-modal').on('show.bs.modal', function(evt){
+            var clickedBtn = evt.relatedTarget;
+            var wishId = clickedBtn.parentElement.getAttribute('data-wish-id');
+            $('#wishId').val(wishId);
+        })
+
+        $('#modal-delete-btn').click(function(){
+            var wishId = $('#wishId').val();
+            var request = $.ajax({
+                url: '/api/v1/wish/' + wishId,
+                method: 'DELETE',
+            })
+            .done(function(data, textStatus, xhr){
+                $('div[data-wish-id="' + wishId + '"]').remove();
+            })
+            .fail(function(xhr, textStatus, errorThrown){
+                console.log(errorThrown);
+            });
         })
     })
 })();

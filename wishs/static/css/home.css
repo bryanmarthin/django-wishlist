@@ -16,18 +16,13 @@
     border-style: solid;
     border-width: 0px;
     border-color: #000;
+    display: inline-block;
 }
 
 .timestamp-div {
     border-style: solid;
     border-width: 0px;
     border-color: #000;
-}
-
-.wish-text-div {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #D9D9D9;
 }
 
 .username-div > p {
@@ -43,8 +38,12 @@
 }
 
 .wish-text-div > p {
-    margin: 0;
-    padding: 10px 0 10px 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #D9D9D9;
+    margin: 10px 0 0 0;
+    /*padding: 10px 0 10px 0;*/
+    padding: 0;
 }
 
 #wish-input {
@@ -70,3 +69,4 @@
     float: right;
     margin: 10px;
 }
+

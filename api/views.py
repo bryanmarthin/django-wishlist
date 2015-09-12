@@ -20,11 +20,20 @@ def wish_list(request):
 
 
 
-@api_view(['POST'])
-def wish_new(request):
+@api_view(['POST', 'DELETE'])
+def wish_detail(request, pk=None):
     if request.method == 'POST':
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        try:
+            post = Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        if request.method == 'DELETE':
+            post.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
