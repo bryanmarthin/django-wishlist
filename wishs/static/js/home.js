@@ -46,22 +46,19 @@ function addWish(id, user, timestamp, text) {
                     },
                     dataType: 'json',
                 })
-
-                request.done(function(wish){
+                .done(function(wish){
                     var wishId = wish['id'];
                     var createdAt = wish['created_at'];
                     var text = wish['text'];
                     var user = wish['user'];
                     addWish(wishId, user, createdAt, text);
                 })
-
-                request.fail(function(){
+                .fail(function(){
                     alert("Your wish can't be granted.")
                 })
-
-                request.always(function(){
+                .always(function(){
                     addWishElm.val('');
-                })
+                });
 
             } else {
                 alert('Please enter your wish.')
