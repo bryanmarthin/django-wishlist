@@ -1,0 +1,31 @@
+{% extends 'wishs/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block feed %}
+{% endblock %}
+
+{% block body %}
+<template id="wish-template">
+  <div class="wish-container">
+    <div class="wish-div">
+      <div class="username-div">
+        <p id="user"></p>
+      </div>
+      <div class="timestamp-div">
+        <p id="timestamp"></p>
+      </div>
+      <div class="wish-text-div">
+        <p id="text"></p>
+      </div>
+    </div>
+  </div>
+</template>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
