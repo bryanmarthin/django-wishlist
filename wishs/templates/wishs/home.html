@@ -5,10 +5,27 @@
     <link href="{% static 'css/home.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block feed %}
+{% block beforeFeed %}
+<div id="feed-div-container" class="container-fluid">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 main-div-container">
+          <div class="row">
+            <div id="wish-input-container" class="col-sm-6 col-sm-offset-3">
+              <div id="wish-input">
+                <div id="add-wish-div" class="form-group">
+                  <textarea id="add-wish-textarea" class="form-control" 
+                            rows="5" placeholder="What's your wish?"></textarea>
+                </div>
+                <button id="add-wish-btn" class="btn btn-default btn-primary">Add wish</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}
 
-{% block body %}
+{% block afterFeed %}
 <template id="wish-template">
   <div class="wish-container">
     <div class="wish-div">

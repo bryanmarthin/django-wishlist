@@ -22,8 +22,8 @@
     {% block head %}{% endblock %}
   </head>
   <body>
-    {% block navbar %}{% endblock %}
-    <div id="body-div-container" class="container-fluid">
+    {% block beforeFeed %}{% endblock %}
+    <div id="feed-div-container" class="container-fluid">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 main-div-container">
           <div class="row">
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    {% block body %}{% endblock %}
+    {% block afterFeed %}{% endblock %}
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

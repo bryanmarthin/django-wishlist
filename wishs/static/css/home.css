@@ -46,3 +46,27 @@
     margin: 0;
     padding: 10px 0 10px 0;
 }
+
+#wish-input {
+    border-style: solid;
+    border-color: #E5E6E9;
+    border-width: 1px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+#add-wish-div {
+    margin-bottom: 0;
+}
+
+#add-wish-textarea {
+    border-style: solid;
+    border-radius: 0px;
+    border-color: #ccc;
+    resize: none;
+}
+
+#add-wish-btn {
+    float: right;
+    margin: 10px;
+}
